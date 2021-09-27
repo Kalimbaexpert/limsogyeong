@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Volim</title>
+      <link rel="stylesheet" href="{% static 'main/css/bootstrap.min.css' %}">
+      <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+      <link rel="stylesheet" href="{% static 'main/css/fontawesome.min.css' %}">
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
+   </head>
+   <body>
+       <div id="contact" class="layout_padding">
+           <div class="container">
+                <div class="row">
+                   <div class="col-md-12 text_align_center">
+                      <h3 class="heading_section">LOGIN</h3>
+                   </div>
+                </div>
+           </div>
+       </div>
+       <div id="trainings_blog" class="layout_padding" style="background: #b52f3c;">
+          <div class="container">
+             <div class="row">
+                <div class="col-md-5">
+                   <div class="contact-form">
+                      <div class="row">
+                         <div class="col-4">
+                            <h4>로그인</h4>
+                         </div>
+                      <div class="col-8 text-right">
+                         <span>또는 <a href="{% url 'log:signup' %}">계정을 만드세요.</a></span>
+                      </div>
+                   </div>
+                      <form method="post" class="post-form" action="{% url 'log:login' %}">
+                         {% csrf_token %}
+                         {% include "form_errors.html" %}
+                         <input type="text" placeholder="Your Name" class="form-control" name="username" id="username" value="{{ form.username.value|default_if_none:'' }}">
+                         <input type="password" placeholder="Password" class="form-control" name="password" id="password" value="{{ form.password.value|default_if_none:'' }}">
+                         <input type="submit" value="Send">
+                      </form>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+   </body>
+</html>
